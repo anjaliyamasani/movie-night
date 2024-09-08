@@ -35,10 +35,9 @@ const RecsSearchBox = () => {
 
     const MoviePoster = ({ title, posterUrl }) => {
         return (
-            <div>
-                <h3>{title}</h3>
+            <div style={{ textAlign: 'center' }}>
                 {posterUrl ? (
-                    <img src={posterUrl} alt={`${title} poster`} style={{ width: '200px' }} />
+                    <img src={posterUrl} alt={`${title} poster`} style={{ width: '200px'}} />
                 ) : (
                     <p>No poster available</p>
                 )}
@@ -90,7 +89,7 @@ const RecsSearchBox = () => {
                 />
                 {/* Display dropdown with suggestions */}
                 {suggestions.length > 0 && (
-                    <ul style={{ border: '1px solid #ccc', maxHeight: '150px', overflowY: 'auto', padding: '0', margin: '0' }}>
+                    <ul style={{ border: '1px solid #ccc', maxHeight: '150px', maxWidth: '348px', overflowY: 'auto', padding: '0', margin: '0' }}>
                         {suggestions.map((movie, index) => (
                             <li 
                                 key={index} 
@@ -105,20 +104,24 @@ const RecsSearchBox = () => {
             </form>
             {/* Display the recommendations */}
             <div>
-                <h3 style={{ color: 'white' }}>
-                    Recommended Movies:
-                </h3>
-                <ul>
+                <h3 style={{ color: 'white' }}>Recommended Movies</h3>
+                <div 
+                    style={{ 
+                        display: 'grid', 
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', 
+                        gap: '20px', 
+                        paddingBottom: '20px',
+                        paddingRight: '20px'
+                    }}
+                >
                     {recommendations.length === 0 ? (
-                        <li style={{ color: 'white' }}>No recommendations yet</li>
+                        <p style={{ color: 'white' }}>No recommendations yet</p>
                     ) : (
                         recommendations.map((movie, index) => (
-                            <li key={index} style={{ color: 'white' }}>
-                                <MoviePoster title={movie.title} posterUrl={movie.poster_url}/>
-                            </li>
+                            <MoviePoster key={index} title={movie.title} posterUrl={movie.poster_url}/>
                         ))
                     )}
-                </ul>
+                </div>
             </div>
         </div>
     );

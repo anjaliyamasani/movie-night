@@ -103,7 +103,7 @@ def recommend(movie):
     recs=[]
     movie_index=new_df[new_df['title']==movie].index[0]
     distances=similarity[movie_index]
-    movies_list=sorted(list(enumerate(distances)), reverse=True, key=lambda x:x[1])[1:11]
+    movies_list=sorted(list(enumerate(distances)), reverse=True, key=lambda x:x[1])[1:13]
 
     for i in movies_list:
         recs.append(new_df.iloc[i[0]].title)
